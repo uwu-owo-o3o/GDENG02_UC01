@@ -26,6 +26,11 @@ public:
 
 public:
 	void initialize();
+	void addWood(int value);
+	void addStone(int value);
+	void deductWood(int value);
+	void deductStone(int value);
+	void updateMaxResources();
 
 public:
 	UPROPERTY(EditAnywhere)
@@ -40,7 +45,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	int ActiveWorkers;
 
-	//UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere)
+	int maxWood;
 
-	
+	UPROPERTY(EditAnywhere)
+	int maxStone;
 };

@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "PlayerProgressManager.h"
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "WorkerBot.generated.h"
@@ -28,23 +29,54 @@ public:
 	void initialize();
 	
 public:
+
+	UPROPERTY(EditAnywhere)
+	AActor* PlayerProgressManagerActor;
+
+	UPROPERTY(EditAnywhere)
 	AActor* Worker;
 
-	bool IsActive;
+	UPROPERTY(EditAnywhere)
+	bool isActivatedWorker;
+
+	UPROPERTY(EditAnywhere)
 	bool isWoodBot;
+
+	UPROPERTY(EditAnywhere)
 	bool isStoneBot;
+
+	UPROPERTY(EditAnywhere)
 	bool bReturning;
 
+	UPROPERTY(EditAnywhere)
 	float alpha;
 
+	UPROPERTY(EditAnywhere)
 	FVector PointA;
+
+	UPROPERTY(EditAnywhere)
 	FVector PointB;
+
+	UPROPERTY(EditAnywhere)
+	int level;
+
+	UPROPERTY(EditAnywhere)
+	float speed;
+	
+	UPROPERTY(EditAnywhere)
+	int wood_collected;
+
+	UPROPERTY(EditAnywhere)
+	int stone_collected;
+
 
 public:
 	void moveBot();
 	void returnToA(FVector PawnPos);
 	void moveTowardsB(FVector PawnPos);
 	void updateFlags(FVector PawnPos);
-
+	void storeCollectedResouces();
+	void levelUp();
+	void checkForUpgrade(int level);
 
 };
