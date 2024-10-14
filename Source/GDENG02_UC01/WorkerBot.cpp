@@ -115,9 +115,8 @@ void UWorkerBot::storeCollectedResouces() {
 	if (playerProgressManager == NULL) return;
 	
 	if (this->isWoodBot) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Added Wood!"));
-		FString ValueString = FString::Printf(TEXT("WOOD COLLECTED: %d"), this->wood_collected);
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, ValueString);
+		/*FString ValueString = FString::Printf(TEXT("WOOD COLLECTED: %d"), this->wood_collected);
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, ValueString);*/
 		playerProgressManager->addWood(this->wood_collected);
 	}
 	else if (this->isStoneBot) {
