@@ -39,7 +39,7 @@ public:
 	ACameraActor* Camera;
 
 	UPROPERTY(EDitAnywhere)
-	int CamPositionNumber = 1;
+	int CamPositionNumber;
 
 
 };
