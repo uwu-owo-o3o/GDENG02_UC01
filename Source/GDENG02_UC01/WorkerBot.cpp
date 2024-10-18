@@ -37,6 +37,7 @@ void UWorkerBot::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 
 void UWorkerBot::initialize() {
 	this->isActivatedWorker = true;
+	//this->isActivatedWorker = false;
 	this->alpha = 0;
 	this->level = 1;
 	this->checkForUpgrade(this->level);

@@ -32,3 +32,13 @@ void UWorkerBotManager::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 	// ...
 }
 
+void UWorkerBotManager::registerBot(int baseNumber, int botNumber) 
+{
+	//UWorkerBot* newBot;
+	//this->workerBotsArray.Add(newBot);
+	//newBot->isActivatedWorker = false;
+	//newBot->baseNumber = baseNumber;
+	//newBot->botNumber = botNumber;
+	
+}
+

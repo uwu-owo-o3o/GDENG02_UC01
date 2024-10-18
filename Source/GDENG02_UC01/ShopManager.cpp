@@ -20,7 +20,8 @@ void UShopManager::BeginPlay()
 	Super::BeginPlay();
 
 	// ...
-	buyWorker = false;
+	//buyWorker = false;
+	this->PlayerInput->InputComponent->BindAction(BUY_WORKER_NAME, EInputEvent::IE_Pressed, this, &UShopManager::CheckBuyWorker);
 	
 }
 
@@ -30,16 +31,20 @@ void UShopManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+
 	// ...
-	
-	CheckBuyWorker();
+	//this->PlayerInputComponent->BindAction(BUY_WORKER_NAME, EInputEvent::IE_Pressed, this, &UShopManager::CheckBuyWorker);
+	//this->PlayerInput->InputComponent->BindAction(BUY)
+	//	CheckBuyWorker();
 }
 
 void UShopManager::CheckBuyWorker() {
 	//UPlayerProgress
 	UPlayerProgressManager* playerProgressManager = this->PlayerProgressManagerActor->GetComponentByClass<UPlayerProgressManager>();
-	if (buyWorker) {
+	if (playerProgressManager != NULL) {
 		playerProgressManager->deductWood(20);
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Bought Wood"));
 	}
+
 }
 

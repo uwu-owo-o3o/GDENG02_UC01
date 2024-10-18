@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "WorkerBot.h"
 #include "WorkerBotManager.generated.h"
 
 
@@ -24,5 +25,9 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-		
+public:
+	TArray<UWorkerBot*> workerBotsArray;
+
+public:
+	void registerBot(int baseNumber, int botNumber);
 };

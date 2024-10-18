@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "PlayerProgressManager.h"
+#include "Components/InputComponent.h"
 #include "ShopManager.generated.h"
 
 
@@ -28,11 +29,17 @@ public:
 	void CheckBuyWorker();
 
 public:
-	UPROPERTY(EDitAnywhere)
-	bool buyWorker;
+	//UPROPERTY(EDitAnywhere)
+	//bool buyWorker;
 
 	UPROPERTY(EDitAnywhere)
 	AActor* PlayerProgressManagerActor;
+
+	UPROPERTY(EDitAnywhere)
+	APawn* PlayerInput;
+
+	const FName BUY_WORKER_NAME = FName("BUY_WORKER");
+	const FName BUY_SILOS_NAME = FName("BUY_SILOS");
 
 
 };

@@ -69,6 +69,12 @@ public:
 	UPROPERTY(EditAnywhere)
 	int stone_collected;
 
+	UPROPERTY(EditAnywhere)
+	int baseNumber;
+
+	UPROPERTY(EditAnywhere)
+	int botNumber;
+
 
 public:
 	void moveBot();
