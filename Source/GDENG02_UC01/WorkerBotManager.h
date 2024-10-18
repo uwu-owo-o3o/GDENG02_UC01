@@ -24,10 +24,18 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
-public:
-	TArray<UWorkerBot*> workerBotsArray;
-
-public:
 	void registerBot(int baseNumber, int botNumber);
+
+public:
+	UPROPERTY(EDitAnywhere)
+	TArray<AActor*> Base1WorkerBots;
+
+public:
+	AActor* getWorkerBot(int baseNumber, int botNumber);
+	//UPROPERTY(EDitAnywhere)
+	//TArray<UWorkerBot*> Base2WorkerBots;
+
+	//UPROPERTY(EDitAnywhere)
+	//TArray<UWorkerBot*> Base3WorkerBots;
+
 };

@@ -42,3 +42,21 @@ void UWorkerBotManager::registerBot(int baseNumber, int botNumber)
 	
 }
 
+AActor* UWorkerBotManager::getWorkerBot(int baseNumber, int botNumber)
+{
+	TArray<AActor*> workerBots;
+	switch (baseNumber) {
+		case 1:
+			workerBots = this->Base1WorkerBots;
+			break;
+		case 2:
+			//workerBots = this->Base2WorkerBots;
+			break;
+		case 3:
+		//	workerBots = this->Base3WorkerBots;
+			break;
+	}
+
+	return workerBots[botNumber];
+}
+

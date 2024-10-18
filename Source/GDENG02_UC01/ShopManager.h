@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "PlayerProgressManager.h"
+#include "WorkerBotManager.h"
+#include "KeyState.h"
 #include "Components/InputComponent.h"
 #include "ShopManager.generated.h"
 
@@ -26,7 +28,8 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	void CheckBuyWorker();
+	void BuyWorker();
+	void SelectWorker(float axisValue);
 
 public:
 	//UPROPERTY(EDitAnywhere)
@@ -36,10 +39,17 @@ public:
 	AActor* PlayerProgressManagerActor;
 
 	UPROPERTY(EDitAnywhere)
+	AActor* WorkerBotManagerActor;
+
+	UPROPERTY(EDitAnywhere)
 	APawn* PlayerInput;
+
+	bool canSelectWorker;
+	int botNumber;
 
 	const FName BUY_WORKER_NAME = FName("BUY_WORKER");
 	const FName BUY_SILOS_NAME = FName("BUY_SILOS");
+	const FName SELECT_WORKER_NAME = FName("SELECT_WORKER");
 
 
 };

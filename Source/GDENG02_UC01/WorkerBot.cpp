@@ -36,10 +36,12 @@ void UWorkerBot::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 }
 
 void UWorkerBot::initialize() {
-	this->isActivatedWorker = true;
-	//this->isActivatedWorker = false;
+	//this->isActivatedWorker = true;
+	this->isActivatedWorker = false;
 	this->alpha = 0;
 	this->level = 1;
+	this->PointA = this->Worker->GetActorLocation();
+	this->PointB = FVector(-3098.0, 2873.0, 1690.0);
 	this->checkForUpgrade(this->level);
 }
 

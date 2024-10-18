@@ -21,8 +21,11 @@ void UShopManager::BeginPlay()
 
 	// ...
 	//buyWorker = false;
-	this->PlayerInput->InputComponent->BindAction(BUY_WORKER_NAME, EInputEvent::IE_Pressed, this, &UShopManager::CheckBuyWorker);
-	
+	this->PlayerInput->InputComponent->BindAction(BUY_WORKER_NAME, EInputEvent::IE_Pressed, this, &UShopManager::BuyWorker);
+	this->PlayerInput->InputComponent->BindAxis(SELECT_WORKER_NAME, this, &UShopManager::SelectWorker);
+	//this->PlayerInput->InputComponent->BindAction(SELECT_1_NAME, EInputEvent::IE_Pressed, this, &UShopManager::SelectWorker(1));
+	//this->PlayerInput->InputComponent->BindAction()
+	this->canSelectWorker = false;
 }
 
 
@@ -36,15 +39,48 @@ void UShopManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 	//this->PlayerInputComponent->BindAction(BUY_WORKER_NAME, EInputEvent::IE_Pressed, this, &UShopManager::CheckBuyWorker);
 	//this->PlayerInput->InputComponent->BindAction(BUY)
 	//	CheckBuyWorker();
+
+	//GEngine->AddOnScreenDebugMessage(-1, 20.0f, FColor::Yellow, TEXT("IMONG MAMA " + FString::SanitizeFloat(botNumber)));
+	
 }
 
-void UShopManager::CheckBuyWorker() {
-	//UPlayerProgress
-	UPlayerProgressManager* playerProgressManager = this->PlayerProgressManagerActor->GetComponentByClass<UPlayerProgressManager>();
-	if (playerProgressManager != NULL) {
-		playerProgressManager->deductWood(20);
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Bought Wood"));
-	}
+void UShopManager::BuyWorker() {
 
+	//if (playerProgressManager != NULL) {
+
+		//select worker
+		GEngine->AddOnScreenDebugMessage(-1, 20.0f, FColor::Yellow, TEXT("Selecting Worker..."));
+		//switch HUD
+		canSelectWorker = true;
+
+
+	//	playerProgressManager->deductWood(20);
+		//canSelectWorker = true;
+		//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Bought Wood Bot"));
+
+
+	//}
+
+}
+
+void UShopManager::SelectWorker(float axisValue) {
+	UPlayerProgressManager* playerProgressManager = this->PlayerProgressManagerActor->GetComponentByClass<UPlayerProgressManager>();
+	UWorkerBotManager* workerBotManager = this->WorkerBotManagerActor->GetComponentByClass<UWorkerBotManager>();
+
+	if (canSelectWorker) {
+	
+		switch ((int)axisValue) {
+			case 1:
+				GEngine->AddOnScreenDebugMessage(-1, 20.0f, FColor::Yellow, TEXT("IMONG MAMA " + FString::SanitizeFloat(axisValue)));
+				break;
+			case 2:
+				GEngine->AddOnScreenDebugMessage(-1, 20.0f, FColor::Yellow, TEXT("GAGO KA " + FString::SanitizeFloat(axisValue)));
+				break;
+		}
+		canSelectWorker = false;
+	}
+		
+		//canSelectWorker = false;
+	//}
 }
 
