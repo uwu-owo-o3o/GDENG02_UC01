@@ -33,7 +33,7 @@ void UPlayerProgressManager::TickComponent(float DeltaTime, ELevelTick TickType,
 }
 
 void UPlayerProgressManager::initialize() {
-	this->CurrWood = 10;
+	this->CurrWood = 0;
 	this->CurrStone = 0;
 	this->ActiveSilo = 1;
 	this->ActiveWorkers = 0;
