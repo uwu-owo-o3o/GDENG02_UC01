@@ -83,3 +83,7 @@ void UPlayerProgressManager::updateMaxResources() {
 	int total_max_stone = 25 * this->ActiveSilo;
 	this->maxStone = total_max_stone;
 }
+
+FString UPlayerProgressManager::updateCurrWoodString() {
+	return FString::FromInt(this->CurrWood);
+}

@@ -31,6 +31,7 @@ public:
 	void deductWood(int value);
 	void deductStone(int value);
 	void updateMaxResources();
+	FString updateCurrWoodString();
 
 public:
 	UPROPERTY(EditAnywhere)
