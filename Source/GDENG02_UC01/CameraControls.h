@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "Camera/CameraActor.h"
+#include "Components/InputComponent.h"
 #include "CameraControls.generated.h"
 
 
@@ -25,7 +26,10 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	void SwitchCameraToRight();
+	void SwitchCameraToLeft();
 
+public:
 	UPROPERTY(EDitAnywhere)
 	AActor* CamPositionA;
 
@@ -39,7 +43,11 @@ public:
 	ACameraActor* Camera;
 
 	UPROPERTY(EDitAnywhere)
+	APawn* Player;
+
+	UPROPERTY(EDitAnywhere)
 	int CamPositionNumber;
 
-
+	const FName SWITCH_CAMERA_RIGHT_NAME = FName("SWITCH_CAMERA_RIGHT");
+	const FName SWITCH_CAMERA_LEFT_NAME = FName("SWITCH_CAMERA_LEFT");
 };

@@ -21,6 +21,8 @@ void UCameraControls::BeginPlay()
 
 	// ...
 	CamPositionNumber = 1;
+	this->Player->InputComponent->BindAction(SWITCH_CAMERA_RIGHT_NAME, EInputEvent::IE_Pressed, this, &UCameraControls::SwitchCameraToRight);
+	this->Player->InputComponent->BindAction(SWITCH_CAMERA_LEFT_NAME, EInputEvent::IE_Pressed, this, &UCameraControls::SwitchCameraToLeft);
 }
 
 
@@ -32,18 +34,36 @@ void UCameraControls::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 	// ...
 	switch (CamPositionNumber) {
 		case 1:
-			Camera->SetActorLocation(CamPositionA->GetActorLocation());
+			//Camera->SetActorLocation(CamPositionA->GetActorLocation());
+			Camera->SetActorTransform(CamPositionA->GetActorTransform());
 			break;
 		case 2:
-			Camera->SetActorLocation(CamPositionB->GetActorLocation());
+			Camera->SetActorTransform(CamPositionB->GetActorTransform());
 			break;
 		case 3:
-			Camera->SetActorLocation(CamPositionC->GetActorLocation());
+			Camera->SetActorTransform(CamPositionC->GetActorTransform());
 			break;
 		default:
-			Camera->SetActorLocation(CamPositionA->GetActorLocation());
+			Camera->SetActorTransform(CamPositionA->GetActorTransform());
 			break;
 	}
 
 }
 
+void UCameraControls::SwitchCameraToRight()
+{
+	CamPositionNumber += 1;
+	if (CamPositionNumber == 4)
+		CamPositionNumber = 1;
+
+	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Emerald, FString::Printf(TEXT("%d"), CamPositionNumber));
+}
+
+void UCameraControls::SwitchCameraToLeft()
+{
+	CamPositionNumber -= 1;
+	if (CamPositionNumber == 0)
+		CamPositionNumber = 3;
+	//ACameraActor* test; test->	
+	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Emerald, FString::Printf(TEXT("%d"), CamPositionNumber));
+}
