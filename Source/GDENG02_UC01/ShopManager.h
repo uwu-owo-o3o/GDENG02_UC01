@@ -6,7 +6,8 @@
 #include "Components/ActorComponent.h"
 #include "PlayerProgressManager.h"
 #include "WorkerBotManager.h"
-#include "KeyState.h"
+#include "CameraControls.h"
+#include "WorkerBot.h"
 #include "Components/InputComponent.h"
 #include "ShopManager.generated.h"
 
@@ -30,6 +31,8 @@ public:
 
 	void BuyWorker();
 	void SelectWorker(float axisValue);
+	void Transact();
+	void ResetTransact();
 
 public:
 	//UPROPERTY(EDitAnywhere)
@@ -41,11 +44,17 @@ public:
 	UPROPERTY(EDitAnywhere)
 	AActor* WorkerBotManagerActor;
 
+	//pawn object for player input
 	UPROPERTY(EDitAnywhere)
-	APawn* PlayerInput;
+	APawn* Player;
+
+	//to know which base the player is currently viewing
+	UPROPERTY(EDitAnywhere)
+	ACameraActor* PlayerCamera;
 
 	bool canSelectWorker;
 	int botNumber;
+	int baseNumber;
 
 	const FName BUY_WORKER_NAME = FName("BUY_WORKER");
 	const FName BUY_SILOS_NAME = FName("BUY_SILOS");

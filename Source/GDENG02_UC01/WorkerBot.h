@@ -81,7 +81,7 @@ public:
 	void returnToA(FVector PawnPos);
 	void moveTowardsB(FVector PawnPos);
 	void updateFlags(FVector PawnPos);
-	void storeCollectedResouces();
+	void storeCollectedResources();
 	void levelUp();
 	void checkForUpgrade(int level);
 

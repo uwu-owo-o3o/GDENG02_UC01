@@ -32,31 +32,62 @@ void UWorkerBotManager::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 	// ...
 }
 
-void UWorkerBotManager::registerBot(int baseNumber, int botNumber) 
-{
-	//UWorkerBot* newBot;
-	//this->workerBotsArray.Add(newBot);
-	//newBot->isActivatedWorker = false;
-	//newBot->baseNumber = baseNumber;
-	//newBot->botNumber = botNumber;
-	
-}
 
-AActor* UWorkerBotManager::getWorkerBot(int baseNumber, int botNumber)
+void UWorkerBotManager::InteractWorkerBot(int baseNumber, int botNumber)
 {
-	TArray<AActor*> workerBots;
+	UWorkerBot* workerBot;
+
 	switch (baseNumber) {
-		case 1:
-			workerBots = this->Base1WorkerBots;
-			break;
-		case 2:
-			//workerBots = this->Base2WorkerBots;
-			break;
-		case 3:
-		//	workerBots = this->Base3WorkerBots;
-			break;
+	case 1:
+		workerBot = this->Base1WorkerBots[botNumber]->GetComponentByClass<UWorkerBot>();
+		break;
+
+	case 2:	//uncomment later for bases 2 and 3
+		//workerBot = this->Base2WorkerBots[botNumber]->GetComponentByClass<UWorkerBot>();
+		break;
+
+	case 3:
+		//workerBot = this->Base3WorkerBots[botNumber]->GetComponentByClass<UWorkerBot>();
+		break;
 	}
 
-	return workerBots[botNumber];
+
+	if (baseNumber == 1) {
+		workerBot = this->Base1WorkerBots[botNumber]->GetComponentByClass<UWorkerBot>();
+
+		if (workerBot->level == 0 && workerBot->isActivatedWorker == false) {	//unlock
+			workerBot->isActivatedWorker = true;
+			workerBot->levelUp();
+		}
+
+		else if (workerBot->level != 5) { //upgrade 
+			workerBot->levelUp();
+		}
+	}
+}
+
+int UWorkerBotManager::CheckWorkerBotLevel(int baseNumber, int botNumber)
+{
+	UWorkerBot* workerBot;
+	int level = -1;
+	switch (baseNumber) {
+	case 1:
+		workerBot = this->Base1WorkerBots[botNumber]->GetComponentByClass<UWorkerBot>();
+		level = workerBot->level;
+		break;
+	case 2: //BASE 2
+		//workerBot = this->Base2WorkerBots[botNumber]->GetComponentByClass<UWorkerBot>();
+		//level = workerBot->level;
+		break;
+	case 3:	//BASE 3
+		//workerBot = this->Base3WorkerBots[botNumber]->GetComponentByClass<UWorkerBot>();
+		//level = workerBot->level;
+		break;
+
+	default:
+		break;
+	}
+
+	return level;
 }
 

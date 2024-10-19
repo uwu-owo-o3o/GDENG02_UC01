@@ -30,10 +30,11 @@ void UPlayerProgressManager::TickComponent(float DeltaTime, ELevelTick TickType,
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
+	//this->updateMaxResources();
 }
 
 void UPlayerProgressManager::initialize() {
-	this->CurrWood = 0;
+	this->CurrWood = 100;
 	this->CurrStone = 0;
 	this->ActiveSilo = 1;
 	this->ActiveWorkers = 0;
