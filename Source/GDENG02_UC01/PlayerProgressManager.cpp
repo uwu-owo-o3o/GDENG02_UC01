@@ -21,10 +21,6 @@ void UPlayerProgressManager::BeginPlay()
 
 	// ...
 	this->initialize();
-	
-	if (GEngine->GetWorld() == nullptr) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("GetWorld is null"));
-	}
 }
 
 

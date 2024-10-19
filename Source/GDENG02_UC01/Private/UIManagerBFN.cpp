@@ -3,50 +3,44 @@
 
 #include "UIManagerBFN.h"
 
-UPlayerProgressManager* UUIManagerBFN::GetPlayerProgressManagerRef() {
-	static UWorld* CurrWorld = GEngine->GetWorld();
-	if (CurrWorld != nullptr) {
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("CurrWorld is not null"));
-	}
+void UUIManagerBFN::test(AActor* manager) {
 
-	TArray<AActor*> WorldActors;
-	AActor* FoundActor = NewObject<AActor>();
-	
-	
-	UGameplayStatics::GetAllActorsOfClass(CurrWorld, UUIManagerBFN::StaticClass(), WorldActors);
 
-	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Number of elements in MyArray: %d"), WorldActors.Num()));
-	
-	for (AActor* Actor : WorldActors) {
-		if (Actor->GetName() == "PlayerProgressManager") {
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Found intended actor"));
-			FoundActor = Actor;
-		}
-	}
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green,TEXT("test func called!"));
 
-	/*if (FoundActor == nullptr) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("FoundActor is null"));
-	}
-	else {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Actor Name: %s"), *FoundActor->GetName()));
-	}*/
+	UPlayerProgressManager* reference = manager->GetComponentByClass<UPlayerProgressManager>();
 
-	UPlayerProgressManager* manager = FoundActor->GetComponentByClass<UPlayerProgressManager>();
-	/*if (manager == nullptr) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("manager is null"));
-	}*/
-	return manager;
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Manager curr wood: %d"), reference->CurrWood));
 }
 
-FText UUIManagerBFN::GetPlayerCurrentWood() {
-	UPlayerProgressManager* reference = GetPlayerProgressManagerRef();
-	FText text = FText::AsNumber(static_cast<int32>(0));
-	if (reference == nullptr) {
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("reference is null"));
-		return text;
-	}
-	int wood = reference->CurrWood;
-	text = FText::AsNumber(static_cast<int32>(wood));
+FText UUIManagerBFN::GetPlayerCurrentWood(AActor* manager) {
+
+	UPlayerProgressManager* reference = manager->GetComponentByClass<UPlayerProgressManager>();
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Manager curr wood: %d"), reference->CurrWood));
+	FText text = FText::AsNumber(static_cast<int32>(reference->CurrWood));	
 	return text;
 }
 
+FText UUIManagerBFN::GetPlayerCurrentStone(AActor* manager) {
+
+	UPlayerProgressManager* reference = manager->GetComponentByClass<UPlayerProgressManager>();
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Manager curr wood: %d"), reference->CurrWood));
+	FText text = FText::AsNumber(static_cast<int32>(reference->CurrStone));
+	return text;
+}
+
+FText UUIManagerBFN::GetPlayerMaxWood(AActor* manager) {
+
+	UPlayerProgressManager* reference = manager->GetComponentByClass<UPlayerProgressManager>();
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Manager curr wood: %d"), reference->CurrWood));
+	FText text = FText::AsNumber(static_cast<int32>(reference->maxWood));
+	return text;
+}
+
+FText UUIManagerBFN::GetPlayerMaxStone(AActor* manager) {
+
+	UPlayerProgressManager* reference = manager->GetComponentByClass<UPlayerProgressManager>();
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Manager curr wood: %d"), reference->CurrWood));
+	FText text = FText::AsNumber(static_cast<int32>(reference->maxStone));
+	return text;
+}

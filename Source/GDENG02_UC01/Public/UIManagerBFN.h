@@ -21,8 +21,18 @@ class GDENG02_UC01_API UUIManagerBFN : public UBlueprintFunctionLibrary
 
 	public:
 		UFUNCTION(BlueprintCallable, Category = "UI Manager BFN")
-		static UPlayerProgressManager* GetPlayerProgressManagerRef();
+		static void test(AActor* manager);
 
 		UFUNCTION(BlueprintCallable, Category = "UI Manager BFN")
-		static FText GetPlayerCurrentWood();
+		static FText GetPlayerCurrentWood(AActor* manager);
+
+		UFUNCTION(BlueprintCallable, Category = "UI Manager BFN")
+		static FText GetPlayerCurrentStone(AActor* manager);
+
+		UFUNCTION(BlueprintCallable, Category = "UI Manager BFN")
+		static FText GetPlayerMaxWood(AActor* manager);
+
+
+		UFUNCTION(BlueprintCallable, Category = "UI Manager BFN")
+		static FText GetPlayerMaxStone(AActor* manager);
 };
