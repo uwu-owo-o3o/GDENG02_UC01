@@ -21,6 +21,10 @@ void UPlayerProgressManager::BeginPlay()
 
 	// ...
 	this->initialize();
+	
+	if (GEngine->GetWorld() == nullptr) {
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("GetWorld is null"));
+	}
 }
 
 
@@ -34,7 +38,7 @@ void UPlayerProgressManager::TickComponent(float DeltaTime, ELevelTick TickType,
 }
 
 void UPlayerProgressManager::initialize() {
-	this->CurrWood = 100;
+	this->CurrWood = 10;
 	this->CurrStone = 0;
 	this->ActiveSilo = 1;
 	this->ActiveWorkers = 0;
@@ -82,8 +86,4 @@ void UPlayerProgressManager::updateMaxResources() {
 	this->maxWood = total_max_wood;
 	int total_max_stone = 25 * this->ActiveSilo;
 	this->maxStone = total_max_stone;
-}
-
-FString UPlayerProgressManager::updateCurrWoodString() {
-	return FString::FromInt(this->CurrWood);
 }

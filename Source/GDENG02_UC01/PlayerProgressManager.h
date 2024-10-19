@@ -31,13 +31,13 @@ public:
 	void deductWood(int value);
 	void deductStone(int value);
 	void updateMaxResources();
-	FString updateCurrWoodString();
-
+	
 public:
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere)	
 	int CurrWood;
 
 	UPROPERTY(EditAnywhere)
+	
 	int CurrStone;
 
 	UPROPERTY(EditAnywhere)

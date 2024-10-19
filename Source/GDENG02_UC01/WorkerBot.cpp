@@ -68,7 +68,7 @@ void UWorkerBot::updateFlags(FVector PawnPos) {
 		}
 		this->bReturning = true;
 		this->alpha = 0.0f;
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Flag updated to TRUE."));
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Flag updated to TRUE."));
 		/*FString ValueString = FString::Printf(TEXT("[TRUE] Pawn Pos X: %f"), this->Bot2Pawn->GetActorLocation().X);
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, ValueString);*/
 	}
