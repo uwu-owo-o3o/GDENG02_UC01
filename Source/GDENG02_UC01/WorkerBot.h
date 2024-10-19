@@ -69,13 +69,19 @@ public:
 	UPROPERTY(EditAnywhere)
 	int stone_collected;
 
+	UPROPERTY(EditAnywhere)
+	int baseNumber;
+
+	UPROPERTY(EditAnywhere)
+	int botNumber;
+
 
 public:
 	void moveBot();
 	void returnToA(FVector PawnPos);
 	void moveTowardsB(FVector PawnPos);
 	void updateFlags(FVector PawnPos);
-	void storeCollectedResouces();
+	void storeCollectedResources();
 	void levelUp();
 	void checkForUpgrade(int level);
 

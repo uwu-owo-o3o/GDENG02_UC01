@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "WorkerBot.h"
 #include "WorkerBotManager.generated.h"
 
 
@@ -23,6 +24,20 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	void UpdateWorkerBot(int baseNumber, int botNumber);
+	int CheckWorkerBotLevel(int baseNumber, int botNumber);
 
-		
+public:
+	UPROPERTY(EDitAnywhere)
+	TArray<AActor*> Base1WorkerBots;
+
+	//uncomment later for bases 2 and 3
+	UPROPERTY(EDitAnywhere)
+	TArray<AActor*> Base2WorkerBots;
+
+	UPROPERTY(EDitAnywhere)
+	TArray<AActor*> Base3WorkerBots;
+
+
+
 };

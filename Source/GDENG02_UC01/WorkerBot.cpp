@@ -32,13 +32,17 @@ void UWorkerBot::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 	// ...
 	if (this->isActivatedWorker) {
 		this->moveBot();
+		checkForUpgrade(0);
 	}
 }
 
 void UWorkerBot::initialize() {
-	this->isActivatedWorker = true;
+	//this->isActivatedWorker = true;
+	this->isActivatedWorker = false;
 	this->alpha = 0;
-	this->level = 1;
+	this->level = 0;
+	this->PointA = this->Worker->GetActorLocation();
+	this->PointB = FVector(-3098.0, 2873.0, 1690.0);
 	this->checkForUpgrade(this->level);
 }
 
@@ -58,9 +62,9 @@ void UWorkerBot::moveBot() {
 void UWorkerBot::updateFlags(FVector PawnPos) {
 	if (PawnPos == PointB) {
 		if (!this->bReturning) {
-			FString ValueString = FString::Printf(TEXT("Alpha value: %f"), this->alpha);
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Flag updated to TRUE."));
-			this->storeCollectedResouces();
+		//	FString ValueString = FString::Printf(TEXT("Alpha value: %f"), this->alpha);
+		//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Flag updated to TRUE."));
+			this->storeCollectedResources();
 		}
 		this->bReturning = true;
 		this->alpha = 0.0f;
@@ -110,17 +114,19 @@ void UWorkerBot::returnToA(FVector PawnPos) {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, ValueString);*/
 }
 
-void UWorkerBot::storeCollectedResouces() {
+void UWorkerBot::storeCollectedResources() {
 	UPlayerProgressManager* playerProgressManager = this->PlayerProgressManagerActor->GetComponentByClass<UPlayerProgressManager>();
 	if (playerProgressManager == NULL) return;
 	
 	if (this->isWoodBot) {
-		/*FString ValueString = FString::Printf(TEXT("WOOD COLLECTED: %d"), this->wood_collected);
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, ValueString);*/
+		//FString ValueString = FString::Printf(TEXT("WOOD COLLECTED: %d"), this->wood_collected);
+		//GEngine->AddOnScreenDebugMessage(0, 5.f, FColor::Cyan, ValueString);
 		playerProgressManager->addWood(this->wood_collected);
 	}
 	else if (this->isStoneBot) {
 		playerProgressManager->addStone(this->stone_collected);
+		//FString ValueString = FString::Printf(TEXT("STONE COLLECTED: %d"), this->stone_collected);
+		//GEngine->AddOnScreenDebugMessage(0, 5.f, FColor::Cyan, ValueString);
 	}
 }
 
@@ -128,6 +134,7 @@ void UWorkerBot::levelUp() {
 	if (this->level < 5) {
 		this->level++;
 	}
+
 }
 
 void UWorkerBot::checkForUpgrade(int value) {

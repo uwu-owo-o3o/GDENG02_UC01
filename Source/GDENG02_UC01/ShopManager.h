@@ -5,6 +5,10 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "PlayerProgressManager.h"
+#include "WorkerBotManager.h"
+#include "CameraControls.h"
+#include "WorkerBot.h"
+#include "Components/InputComponent.h"
 #include "ShopManager.generated.h"
 
 
@@ -25,14 +29,34 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	void CheckBuyWorker();
+	void BuyWorker();
+	void BuySilos();
+	void SelectWorker(float axisValue);
+	void TransactWorker();
+	void ResetTransact();
 
 public:
 	UPROPERTY(EDitAnywhere)
-	bool buyWorker;
+	AActor* PlayerProgressManagerActor;
 
 	UPROPERTY(EDitAnywhere)
-	AActor* PlayerProgressManagerActor;
+	AActor* WorkerBotManagerActor;
+
+	//pawn object for player input
+	UPROPERTY(EDitAnywhere)
+	APawn* Player;
+
+	//to know which base the player is currently viewing
+	UPROPERTY(EDitAnywhere)
+	ACameraActor* PlayerCamera;
+
+	bool canSelectWorker;
+	int botNumber;
+	int baseNumber;
+
+	const FName BUY_WORKER_NAME = FName("BUY_WORKER");
+	const FName BUY_SILOS_NAME = FName("BUY_SILOS");
+	const FName SELECT_WORKER_NAME = FName("SELECT_WORKER");
 
 
 };
