@@ -42,7 +42,8 @@ void UWorkerBot::initialize() {
 	this->alpha = 0;
 	this->level = 0;
 	this->PointA = this->Worker->GetActorLocation();
-	this->PointB = FVector(-3098.0, 2873.0, 1690.0);
+	this->PointB = this->PointBFlag->GetActorLocation();
+	//this->PointB = FVector(-3098.0, 2873.0, 1690.0);
 	this->checkForUpgrade(this->level);
 }
 

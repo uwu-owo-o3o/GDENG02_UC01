@@ -55,7 +55,7 @@ public:
 	FVector PointA;
 
 	UPROPERTY(EditAnywhere)
-	FVector PointB;
+	AActor* PointBFlag;
 
 	UPROPERTY(EditAnywhere)
 	int level;
@@ -74,6 +74,8 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	int botNumber;
+
+	FVector PointB;
 
 
 public:
