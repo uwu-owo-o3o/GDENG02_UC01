@@ -35,7 +35,7 @@ void UWorkerBotManager::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 
 void UWorkerBotManager::InteractWorkerBot(int baseNumber, int botNumber)
 {
-	UWorkerBot* workerBot;
+	UWorkerBot* workerBot = NULL;
 
 	switch (baseNumber) {
 	case 1:
@@ -49,12 +49,12 @@ void UWorkerBotManager::InteractWorkerBot(int baseNumber, int botNumber)
 	case 3:
 		//workerBot = this->Base3WorkerBots[botNumber]->GetComponentByClass<UWorkerBot>();
 		break;
+
+	default:
+		break;
 	}
 
-
-	if (baseNumber == 1) {
-		workerBot = this->Base1WorkerBots[botNumber]->GetComponentByClass<UWorkerBot>();
-
+	if (workerBot != NULL) {
 		if (workerBot->level == 0 && workerBot->isActivatedWorker == false) {	//unlock
 			workerBot->isActivatedWorker = true;
 			workerBot->levelUp();
@@ -64,6 +64,7 @@ void UWorkerBotManager::InteractWorkerBot(int baseNumber, int botNumber)
 			workerBot->levelUp();
 		}
 	}
+
 }
 
 int UWorkerBotManager::CheckWorkerBotLevel(int baseNumber, int botNumber)
