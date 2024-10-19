@@ -56,6 +56,9 @@ void UShopManager::BuySilos()
 			playerProgressManager->deductWood(50);
 			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Magenta, TEXT("UNLOCKED SILOS"));
 		}
+		else {
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Magenta, TEXT("Insufficient funds for Silos"));
+		}
 	}
 	else {
 		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Magenta, TEXT("SILOS MAX UPGRADE"));
