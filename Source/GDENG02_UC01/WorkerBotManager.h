@@ -24,7 +24,7 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-	void InteractWorkerBot(int baseNumber, int botNumber);
+	void UpdateWorkerBot(int baseNumber, int botNumber);
 	int CheckWorkerBotLevel(int baseNumber, int botNumber);
 
 public:

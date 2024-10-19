@@ -33,7 +33,7 @@ void UWorkerBotManager::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 }
 
 
-void UWorkerBotManager::InteractWorkerBot(int baseNumber, int botNumber)
+void UWorkerBotManager::UpdateWorkerBot(int baseNumber, int botNumber)
 {
 	UWorkerBot* workerBot = NULL;
 

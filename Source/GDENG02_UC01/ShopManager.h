@@ -30,8 +30,9 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	void BuyWorker();
+	void BuySilos();
 	void SelectWorker(float axisValue);
-	void Transact();
+	void TransactWorker();
 	void ResetTransact();
 
 public:
