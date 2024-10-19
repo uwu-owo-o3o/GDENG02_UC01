@@ -16,7 +16,7 @@ void UUIManagerBFN::test(AActor* manager) {
 FText UUIManagerBFN::GetPlayerCurrentWood(AActor* manager) {
 
 	UPlayerProgressManager* reference = manager->GetComponentByClass<UPlayerProgressManager>();
-	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Manager curr wood: %d"), reference->CurrWood));
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Manager curr wood: %d"), reference->CurrWood));
 	FText text = FText::AsNumber(static_cast<int32>(reference->CurrWood));	
 	return text;
 }
