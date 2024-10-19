@@ -32,11 +32,11 @@ public:
 	TArray<AActor*> Base1WorkerBots;
 
 	//uncomment later for bases 2 and 3
-	//UPROPERTY(EDitAnywhere)
-	//TArray<UWorkerBot*> Base2WorkerBots;
+	UPROPERTY(EDitAnywhere)
+	TArray<AActor*> Base2WorkerBots;
 
-	//UPROPERTY(EDitAnywhere)
-	//TArray<UWorkerBot*> Base3WorkerBots;
+	UPROPERTY(EDitAnywhere)
+	TArray<AActor*> Base3WorkerBots;
 
 
 

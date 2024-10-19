@@ -30,7 +30,7 @@ void UPlayerProgressManager::TickComponent(float DeltaTime, ELevelTick TickType,
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
-	//this->updateMaxResources();
+	this->updateMaxResources();
 }
 
 void UPlayerProgressManager::initialize() {

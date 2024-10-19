@@ -20,12 +20,9 @@ void UShopManager::BeginPlay()
 	Super::BeginPlay();
 
 	// ...
-	//buyWorker = false;
 	this->Player->InputComponent->BindAction(BUY_WORKER_NAME, EInputEvent::IE_Pressed, this, &UShopManager::BuyWorker);
 	this->Player->InputComponent->BindAction(BUY_SILOS_NAME, EInputEvent::IE_Pressed, this, &UShopManager::BuySilos);
 	this->Player->InputComponent->BindAxis(SELECT_WORKER_NAME, this, &UShopManager::SelectWorker);
-	//this->PlayerInput->InputComponent->BindAction(SELECT_1_NAME, EInputEvent::IE_Pressed, this, &UShopManager::SelectWorker(1));
-	//this->PlayerInput->InputComponent->BindAction()
 	this->canSelectWorker = false;
 	this->botNumber = -1;
 	this->baseNumber = 1;
@@ -35,50 +32,40 @@ void UShopManager::BeginPlay()
 // Called every frame
 void UShopManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-
-	// ...
-	//this->PlayerInputComponent->BindAction(BUY_WORKER_NAME, EInputEvent::IE_Pressed, this, &UShopManager::CheckBuyWorker);
-	//this->PlayerInput->InputComponent->BindAction(BUY)
-	//	CheckBuyWorker();
-
-	//GEngine->AddOnScreenDebugMessage(-1, 20.0f, FColor::Yellow, TEXT("IMONG MAMA " + FString::SanitizeFloat(botNumber)));
-	
+	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);	
 }
 
 void UShopManager::BuyWorker() 
 {
 
-	//if (playerProgressManager != NULL) {
+	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, TEXT("Selecting Worker..."));	
+	canSelectWorker = true;
 
-		//select worker
-		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, TEXT("Selecting Worker..."));
-		//switch HUD
-		canSelectWorker = true;
-
-
-	//	playerProgressManager->deductWood(20);
-		//canSelectWorker = true;
-		//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Bought Wood Bot"));
-
-
-	//}
+	//switch to Shop HUD (shows all worker bots info)
 
 }
 
-void UShopManager::BuySilos() 
+void UShopManager::BuySilos()
 {
+	UPlayerProgressManager* playerProgressManager = this->PlayerProgressManagerActor->GetComponentByClass<UPlayerProgressManager>();
+	this->baseNumber = this->PlayerCamera->GetComponentByClass<UCameraControls>()->CamPositionNumber;
 
+	if (playerProgressManager->ActiveSilo < 6) {
+		if (playerProgressManager->CurrWood >= 50) {
+			playerProgressManager->ActiveSilo += 1;
+			playerProgressManager->deductWood(50);
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Magenta, TEXT("UNLOCKED SILOS"));
+		}
+	}
+	else {
+		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Magenta, TEXT("SILOS MAX UPGRADE"));
+	}
+	
 }
 
 void UShopManager::SelectWorker(float axisValue) 
 {
-	//UPlayerProgressManager* playerProgressManager = this->PlayerProgressManagerActor->GetComponentByClass<UPlayerProgressManager>();
-	//UWorkerBotManager* workerBotManager = this->WorkerBotManagerActor->GetComponentByClass<UWorkerBotManager>();
-	//int baseNumber = this->PlayerCamera->GetComponentByClass<UCameraControls>()->CamPositionNumber;
-	//int botNumber = 0;
-	GEngine->AddOnScreenDebugMessage(0, 5.0f, FColor::Yellow, TEXT("IMONG MAMA " + FString::SanitizeFloat(axisValue)));
+	GEngine->AddOnScreenDebugMessage(0, 5.0f, FColor::Yellow, TEXT("INPUT AXIS: " + FString::SanitizeFloat(axisValue)));
 	if (canSelectWorker) {
 	
 		switch ((int)axisValue) {
@@ -128,7 +115,7 @@ void UShopManager::TransactWorker()
 {
 	UPlayerProgressManager* playerProgressManager = this->PlayerProgressManagerActor->GetComponentByClass<UPlayerProgressManager>();
 	UWorkerBotManager* workerBotManager = this->WorkerBotManagerActor->GetComponentByClass<UWorkerBotManager>();
-	//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("HOY BOT"));
+	
 	this->baseNumber = this->PlayerCamera->GetComponentByClass<UCameraControls>()->CamPositionNumber;
 	int level = workerBotManager->CheckWorkerBotLevel(this->baseNumber, this->botNumber);
 
@@ -195,7 +182,7 @@ void UShopManager::TransactWorker()
 		break;
 
 	case 5:	//ALREADY AT MAX UPGRADE
-		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("MAX UPGRADE"));
+		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("BOT MAX UPGRADE"));
 		break;
 	
 
@@ -203,27 +190,6 @@ void UShopManager::TransactWorker()
 		break;
 
 	}
-
-
-
-
-	////whether unlock or upgrade
-	//if (workerBotManager->CheckWorkerBotLevel(this->baseNumber, this->botNumber) == 1) {
-	//	if (playerProgressManager->CurrWood >= 20) {
-	//		workerBotManager->InteractWorkerBot(this->baseNumber, this->botNumber);
-	//		playerProgressManager->deductWood(20);
-	//		GEngine->AddOnScreenDebugMessage(0, 5.0f, FColor::Blue, TEXT("UNLOCKED BOT"));
-	//	}
-	//	else
-	//		GEngine->AddOnScreenDebugMessage(0, 5.0f, FColor::Blue, TEXT("Insufficient funds for unlock"));
-	//}
-	//else if (workerBotManager->CheckWorkerBotLevel(this->baseNumber, this->botNumber) != 5) {
-	//	if (playerProgressManager->CurrWood >= 20) {
-	//		workerBotManager->InteractWorkerBot(this->baseNumber, this->botNumber);
-	//		playerProgressManager->deductWood(20);
-	//		GEngine->AddOnScreenDebugMessage(0, 5.0f, FColor::Blue, TEXT("Insufficient funds for upgrade"));
-	//	}
-	//}
 }
 
 void UShopManager::ResetTransact() {

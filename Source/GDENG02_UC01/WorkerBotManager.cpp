@@ -43,11 +43,11 @@ void UWorkerBotManager::UpdateWorkerBot(int baseNumber, int botNumber)
 		break;
 
 	case 2:	//uncomment later for bases 2 and 3
-		//workerBot = this->Base2WorkerBots[botNumber]->GetComponentByClass<UWorkerBot>();
+		workerBot = this->Base2WorkerBots[botNumber]->GetComponentByClass<UWorkerBot>();
 		break;
 
 	case 3:
-		//workerBot = this->Base3WorkerBots[botNumber]->GetComponentByClass<UWorkerBot>();
+		workerBot = this->Base3WorkerBots[botNumber]->GetComponentByClass<UWorkerBot>();
 		break;
 
 	default:
@@ -77,12 +77,12 @@ int UWorkerBotManager::CheckWorkerBotLevel(int baseNumber, int botNumber)
 		level = workerBot->level;
 		break;
 	case 2: //BASE 2
-		//workerBot = this->Base2WorkerBots[botNumber]->GetComponentByClass<UWorkerBot>();
-		//level = workerBot->level;
+		workerBot = this->Base2WorkerBots[botNumber]->GetComponentByClass<UWorkerBot>();
+		level = workerBot->level;
 		break;
 	case 3:	//BASE 3
-		//workerBot = this->Base3WorkerBots[botNumber]->GetComponentByClass<UWorkerBot>();
-		//level = workerBot->level;
+		workerBot = this->Base3WorkerBots[botNumber]->GetComponentByClass<UWorkerBot>();
+		level = workerBot->level;
 		break;
 
 	default:

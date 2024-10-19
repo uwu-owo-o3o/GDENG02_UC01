@@ -36,9 +36,6 @@ public:
 	void ResetTransact();
 
 public:
-	//UPROPERTY(EDitAnywhere)
-	//bool buyWorker;
-
 	UPROPERTY(EDitAnywhere)
 	AActor* PlayerProgressManagerActor;
 
